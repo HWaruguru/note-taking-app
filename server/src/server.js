@@ -1,10 +1,16 @@
 import express from "express";
 import notesRoutes from "./routes/notesRoutes.js"
+import { connectDB } from "./config/db.js";
+import dotenv from "dotenv"
 // const express = require("express")
-const app = express();
 
+dotenv.config()
+const app = express();
+const PORT = process.env.PORT || 5001
+connectDB()
 app.use("/api/notes", notesRoutes)
 
-app.listen(5001, () => {
-    console.log("Server updated on PORT: 5001")
+app.listen(PORT, () => {
+    console.log(`Server updated on PORT:${PORT} `)
 })
+
